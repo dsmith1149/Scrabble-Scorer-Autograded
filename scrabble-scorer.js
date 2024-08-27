@@ -47,21 +47,21 @@ function vowelBonusScorer(word) {
    let score = 0
    for (let i = 0; i < word.length; i++) {
       if (['A', 'E', 'I', 'O', 'U'].includes(word[i])) {
-         score += 3 
+         score += 3
       }
       else {
-         score += 1 
+         score += 1
       }
    }
    return score
 }
 
-function scrabbleScorer(word) {    
+function scrabbleScorer(word) {
    word = word.toLowerCase();
    let score = 0;
    for (let i = 0; i < word.length; i++) {
       let letter = word[i];
-      if (newPointStructure[letter]) {  
+      if (newPointStructure[letter]) {
          score += newPointStructure[letter];
       }
    }
@@ -92,19 +92,19 @@ function scorerPrompt(word) {
    console.log("0 - Simple: " + scoringAlgorithms[0].description);
    console.log("1 - Vowel Bonus: " + scoringAlgorithms[1].description);
    console.log("2 - Scrabble: " + scoringAlgorithms[2].description);
-   let algorithmChoice = input.question("Enter 0, 1, or 2:"); 
-      return scoringAlgorithms[algorithmChoice];
+   let algorithmChoice = input.question("Enter 0, 1, or 2:");
+   return scoringAlgorithms[algorithmChoice];
 }
 let newPointStructure = transform(oldPointStructure);
 
 function transform(oldPointStructure) {
-let newPointStructure = {};
-for (points in oldPointStructure){
+   let newPointStructure = {};
+   for (points in oldPointStructure) {
       let juicy = oldPointStructure[points];
-   for (let i = 0; i < juicy.length; i++) {
-      let fruit = juicy[i].toLowerCase(); 
-      newPointStructure[fruit] = parseInt(points, 10);
-}
+      for (let i = 0; i < juicy.length; i++) {
+         let fruit = juicy[i].toLowerCase();
+         newPointStructure[fruit] = parseInt(points, 10);
+      }
    }
    return newPointStructure
 }
@@ -116,6 +116,7 @@ function runProgram() {
    console.log(`Score for '${word}':`);
    console.log(selectedAlgorithm.scorerFunction(word));
 }
+
 runProgram();
 // Don't write any code below this line //
 // And don't change these or your program will not run as expected //
